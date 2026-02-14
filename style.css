@@ -2066,3 +2066,104 @@ h6 { font-size: var(--text-base); }
         display: none;
     }
 }
+
+/* ===== IMAGE PLACEHOLDER FIXES FOR MOBILE ===== */
+
+/* Ensure images load properly on all devices */
+.photo-preview img,
+.profile-photo img,
+.card-image img,
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: linear-gradient(135deg, #f6f7f8 0%, #edeef1 100%);
+}
+
+/* Loading state for images */
+.photo-preview img:not([src]),
+.photo-preview img[src=""],
+.photo-preview img[src="#"] {
+    opacity: 0;
+}
+
+.photo-preview {
+    position: relative;
+    background: linear-gradient(135deg, #f6f7f8 0%, #edeef1 100%);
+    min-height: 100px;
+}
+
+/* Skeleton loading animation */
+.photo-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    100% {
+        left: 100%;
+    }
+}
+
+/* Stop animation when image is loaded */
+.photo-preview img[src] + .photo-preview::before {
+    display: none;
+}
+
+/* Profile photo upload box fixes */
+.photo-upload-box {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    border: 2px dashed var(--border-medium);
+    transition: all 0.3s ease;
+}
+
+.photo-upload-box.has-image {
+    border: 2px solid var(--primary);
+    background: transparent;
+}
+
+.photo-upload-box.has-image::before {
+    display: none;
+}
+
+/* Fix for mobile touch events */
+.photo-upload-box {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Ensure file inputs are accessible */
+.photo-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+/* Fix for iOS file input */
+@media (hover: none) and (pointer: coarse) {
+    .photo-upload-box {
+        cursor: pointer;
+        min-height: 120px;
+    }
+    
+    .photo-upload-box:active {
+        background: var(--primary-light);
+        transform: scale(0.98);
+    }
+}
+
+/* Add this to your HTML head for better mobile image handling */

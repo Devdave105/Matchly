@@ -16,9 +16,10 @@
             <div class="header-content">
                 <a href="index.html" class="back-button">
                     <i class="fas fa-arrow-left"></i>
+                    Exit
                 </a>
                 <div class="logo">Matchly</div>
-                <div style="width: 40px;"></div>
+                <div style="width: 80px;"></div>
             </div>
         </header>
 
@@ -26,66 +27,94 @@
             <!-- Progress Bar -->
             <div class="profile-progress">
                 <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill" style="width: 25%;"></div>
+                    <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
                 </div>
                 <div class="progress-steps">
-                    <span class="step active" id="step1">Photos</span>
-                    <span class="step" id="step2">Basic Info</span>
-                    <span class="step" id="step3">About You</span>
-                    <span class="step" id="step4">Interests</span>
+                    <span class="step" id="step1">Basic Info</span>
+                    <span class="step" id="step2">Contact</span>
+                    <span class="step" id="step3">About</span>
+                    <span class="step" id="step4">Preferences</span>
+                    <span class="step" id="step5">Media</span>
+                    <span class="step" id="step6">Verification</span>
                 </div>
             </div>
 
-            <!-- Step 1: Photos -->
+            <!-- Step 1: Basic Info -->
             <div class="profile-card" id="step1Card">
-                <div class="photo-section">
-                    <h2 class="photo-title">Add Your Photos</h2>
-                    <p class="photo-subtitle">Upload at least 2 photos to get started</p>
-
-                    <div class="photo-grid">
-                        <div class="photo-upload-box" id="photoBox1">
-                            <i class="fas fa-camera"></i>
-                            <span>Add Photo</span>
-                            <input type="file" accept="image/*" id="photoInput1" style="display: none;">
-                        </div>
-                        <div class="photo-upload-box" id="photoBox2">
-                            <i class="fas fa-camera"></i>
-                            <span>Add Photo</span>
-                            <input type="file" accept="image/*" id="photoInput2" style="display: none;">
-                        </div>
-                        <div class="photo-upload-box" id="photoBox3">
-                            <i class="fas fa-camera"></i>
-                            <span>Add Photo</span>
-                            <input type="file" accept="image/*" id="photoInput3" style="display: none;">
-                        </div>
-                    </div>
-
-                    <div class="photo-hint">
-                        <i class="fas fa-info-circle"></i>
-                        First photo will be your profile picture
-                    </div>
+                <div class="section-header">
+                    <h2 class="section-title">Basic Information</h2>
+                    <p class="section-subtitle">Tell us who you are</p>
                 </div>
 
-                <div class="action-buttons">
-                    <button class="btn btn-outline" id="skipPhotos">Skip for now</button>
-                    <button class="btn btn-primary" id="nextToBasic" disabled>Next Step</button>
-                </div>
-            </div>
-
-            <!-- Step 2: Basic Info -->
-            <div class="profile-card" id="step2Card" style="display: none;">
-                <div class="photo-section">
-                    <h2 class="photo-title">Basic Information</h2>
-                    <p class="photo-subtitle">Tell us about yourself</p>
+                <!-- Profile Completion Badge -->
+                <div class="completion-badge" id="completionBadge1" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Section completed</span>
                 </div>
 
                 <form id="basicInfoForm">
+                    <!-- Profile Picture -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <i class="fas fa-camera"></i>
+                            <h3>Profile Picture</h3>
+                            <p>Required</p>
+                        </div>
+                        
+                        <div class="photo-grid">
+                            <div class="photo-upload-box" id="profilePhotoBox">
+                                <i class="fas fa-camera"></i>
+                                <span>Add Photo</span>
+                                <input type="file" accept="image/*" id="profilePhotoInput" style="display: none;">
+                            </div>
+                            <div class="photo-upload-box" id="photoBox2">
+                                <i class="fas fa-camera"></i>
+                                <span>Add Photo</span>
+                                <input type="file" accept="image/*" id="photoInput2" style="display: none;">
+                            </div>
+                            <div class="photo-upload-box" id="photoBox3">
+                                <i class="fas fa-camera"></i>
+                                <span>Add Photo</span>
+                                <input type="file" accept="image/*" id="photoInput3" style="display: none;">
+                            </div>
+                        </div>
+                        <div class="photo-hint">
+                            <i class="fas fa-info-circle"></i>
+                            First photo will be your profile picture
+                        </div>
+                    </div>
+
                     <!-- Personal Details -->
                     <div class="form-section">
-                        <h3 class="section-title">
+                        <div class="form-section-header">
                             <i class="fas fa-user-circle"></i>
-                            Personal Details
-                        </h3>
+                            <h3>Personal Details</h3>
+                            <p>Required</p>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="displayName">
+                                    Display Name *
+                                    <span class="tooltip" data-tooltip="This is how you'll appear to others">ⓘ</span>
+                                </label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user-tag"></i>
+                                    <input type="text" id="displayName" placeholder="e.g. JohnDoe" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="username">
+                                    Username (Optional)
+                                    <span class="tooltip" data-tooltip="Unique identifier for your profile">ⓘ</span>
+                                </label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-at"></i>
+                                    <input type="text" id="username" placeholder="e.g. @johndoe">
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="form-row">
                             <div class="form-group">
@@ -105,12 +134,12 @@
                             </div>
                         </div>
 
-                        <div class="age-gender-row">
+                        <div class="form-row">
                             <div class="form-group">
-                                <label for="age">Age *</label>
+                                <label for="dob">Date of Birth *</label>
                                 <div class="input-wrapper">
                                     <i class="fas fa-calendar"></i>
-                                    <input type="number" id="age" placeholder="Age" min="18" max="100" required>
+                                    <input type="date" id="dob" required>
                                 </div>
                             </div>
 
@@ -124,62 +153,216 @@
                                         <option value="man">Man</option>
                                         <option value="non-binary">Non-binary</option>
                                         <option value="other">Other</option>
+                                        <option value="prefer-not">Prefer not to say</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Location -->
-                    <div class="form-section">
-                        <h3 class="section-title">
-                            <i class="fas fa-map-marker-alt"></i>
-                            Location
-                        </h3>
 
                         <div class="form-group">
-                            <label for="country">Country *</label>
-                            <select id="country" class="country-select" required>
-                                <option value="">Select your country</option>
-                                <option value="USA">United States</option>
-                                <option value="UK">United Kingdom</option>
-                                <option value="Canada">Canada</option>
-                                <option value="Australia">Australia</option>
-                                <option value="Germany">Germany</option>
-                                <option value="France">France</option>
-                                <option value="Spain">Spain</option>
-                                <option value="Italy">Italy</option>
-                                <option value="Japan">Japan</option>
-                                <option value="Brazil">Brazil</option>
-                                <option value="India">India</option>
-                                <option value="Other">Other</option>
-                            </select>
+                            <label for="pronouns">Pronouns (Optional)</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-heart"></i>
+                                <input type="text" id="pronouns" placeholder="e.g. she/her, he/him, they/them">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="action-buttons">
+                    <button class="btn btn-outline" id="skipToHome">Skip for now</button>
+                    <button class="btn btn-primary" id="nextToContact">Next: Contact Info</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Contact & Account Info -->
+            <div class="profile-card" id="step2Card" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">Contact & Account</h2>
+                    <p class="section-subtitle">How to reach you</p>
+                </div>
+
+                <div class="completion-badge" id="completionBadge2" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Section completed</span>
+                </div>
+
+                <form id="contactForm">
+                    <!-- Email & Phone -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <i class="fas fa-address-card"></i>
+                            <h3>Contact Information</h3>
+                            <p>Required</p>
                         </div>
 
-                        <div class="form-group location-search">
-                            <label for="city">City *</label>
+                        <div class="form-group">
+                            <label for="contactEmail">Email Address *</label>
                             <div class="input-wrapper">
-                                <i class="fas fa-city"></i>
-                                <input type="text" id="city" placeholder="Enter your city" required>
-                                <button type="button" id="detectLocation" style="position: absolute; right: 10px; background: none; border: none; color: var(--primary); cursor: pointer;">
-                                    <i class="fas fa-crosshairs"></i>
-                                </button>
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="contactEmail" placeholder="Enter your email" required>
+                            </div>
+                            <small style="color: var(--text-tertiary); font-size: var(--text-xs);">Used for login and notifications</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">
+                                Phone Number
+                                <span class="tooltip" data-tooltip="For account recovery and 2FA">ⓘ</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="phone" placeholder="Enter your phone number">
                             </div>
                         </div>
                     </div>
 
-                    <!-- Work & Education -->
+                    <!-- Social Media -->
                     <div class="form-section">
-                        <h3 class="section-title">
-                            <i class="fas fa-briefcase"></i>
-                            Work & Education (Optional)
-                        </h3>
+                        <div class="form-section-header">
+                            <i class="fas fa-share-alt"></i>
+                            <h3>Social Media Links</h3>
+                            <p>Optional</p>
+                        </div>
 
                         <div class="form-group">
-                            <label for="jobTitle">Job Title</label>
+                            <label for="instagram">Instagram</label>
+                            <div class="input-wrapper">
+                                <i class="fab fa-instagram"></i>
+                                <input type="text" id="instagram" placeholder="@username">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn</label>
+                            <div class="input-wrapper">
+                                <i class="fab fa-linkedin"></i>
+                                <input type="text" id="linkedin" placeholder="linkedin.com/in/username">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tiktok">TikTok</label>
+                            <div class="input-wrapper">
+                                <i class="fab fa-tiktok"></i>
+                                <input type="text" id="tiktok" placeholder="@username">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Security Settings</h3>
+                            <p>Required</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="securityQuestion">Security Question</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-question-circle"></i>
+                                <select id="securityQuestion">
+                                    <option value="">Select a security question</option>
+                                    <option value="pet">What was your first pet's name?</option>
+                                    <option value="school">What was your first school's name?</option>
+                                    <option value="city">What city were you born in?</option>
+                                    <option value="mother">What is your mother's maiden name?</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="securityAnswer">Answer</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input type="text" id="securityAnswer" placeholder="Enter your answer">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="action-buttons">
+                    <button class="btn btn-outline" id="backToBasic">Back</button>
+                    <button class="btn btn-primary" id="nextToAbout">Next: About You</button>
+                </div>
+            </div>
+
+            <!-- Step 3: About You -->
+            <div class="profile-card" id="step3Card" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">About You</h2>
+                    <p class="section-subtitle">Tell your story</p>
+                </div>
+
+                <div class="completion-badge" id="completionBadge3" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Section completed</span>
+                </div>
+
+                <form id="aboutForm">
+                    <!-- Bio -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <i class="fas fa-edit"></i>
+                            <h3>Bio</h3>
+                            <p>Required</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bio">Write a short bio *</label>
+                            <div class="input-wrapper">
+                                <textarea id="bio" placeholder="Tell others about yourself... What makes you unique? What are you looking for?" maxlength="500" required></textarea>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: var(--spacing-sm);">
+                                <small style="color: var(--text-tertiary);">Minimum 20 characters</small>
+                                <span style="font-size: var(--text-xs); color: var(--text-tertiary);" id="bioCount">0/500</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interests -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <i class="fas fa-heart"></i>
+                            <h3>Interests & Hobbies</h3>
+                            <p>Select at least 5</p>
+                        </div>
+
+                        <div class="interests-grid" id="interestsGrid">
+                            <span class="interest-tag">Music</span>
+                            <span class="interest-tag">Movies</span>
+                            <span class="interest-tag">Travel</span>
+                            <span class="interest-tag">Fitness</span>
+                            <span class="interest-tag">Cooking</span>
+                            <span class="interest-tag">Reading</span>
+                            <span class="interest-tag">Photography</span>
+                            <span class="interest-tag">Art</span>
+                            <span class="interest-tag">Gaming</span>
+                            <span class="interest-tag">Sports</span>
+                            <span class="interest-tag">Fashion</span>
+                            <span class="interest-tag">Technology</span>
+                            <span class="interest-tag">Nature</span>
+                            <span class="interest-tag">Pets</span>
+                            <span class="interest-tag">Yoga</span>
+                            <span class="interest-tag">Dancing</span>
+                        </div>
+                        <div id="interestsAlert" class="alert alert-info" style="display: none; margin-top: var(--spacing-md);"></div>
+                    </div>
+
+                    <!-- Profession & Education -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <i class="fas fa-briefcase"></i>
+                            <h3>Work & Education</h3>
+                            <p>Optional</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profession">Profession</label>
                             <div class="input-wrapper">
                                 <i class="fas fa-briefcase"></i>
-                                <input type="text" id="jobTitle" placeholder="e.g. Product Designer">
+                                <input type="text" id="profession" placeholder="e.g. Product Designer">
                             </div>
                         </div>
 
@@ -199,215 +382,430 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Location -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>Location</h3>
+                            <p>Required</p>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="country">Country *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-globe"></i>
+                                    <select id="country" required>
+                                        <option value="">Select country</option>
+                                        <option value="USA">United States</option>
+                                        <option value="UK">United Kingdom</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="Germany">Germany</option>
+                                        <option value="France">France</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <div class="input-wrapper location-search">
+                                    <i class="fas fa-city"></i>
+                                    <input type="text" id="city" placeholder="Enter your city" required>
+                                    <button type="button" id="detectLocation" style="position: absolute; right: 10px; background: none; border: none; color: var(--primary); cursor: pointer;">
+                                        <i class="fas fa-crosshairs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
 
                 <div class="action-buttons">
-                    <button class="btn btn-outline" id="backToPhotos">Back</button>
-                    <button class="btn btn-primary" id="nextToAbout">Next Step</button>
+                    <button class="btn btn-outline" id="backToContact">Back</button>
+                    <button class="btn btn-primary" id="nextToPreferences">Next: Preferences</button>
                 </div>
             </div>
 
-            <!-- Step 3: About You -->
-            <div class="profile-card" id="step3Card" style="display: none;">
-                <div class="photo-section">
-                    <h2 class="photo-title">About You</h2>
-                    <p class="photo-subtitle">Help others get to know you</p>
+            <!-- Step 4: Preferences & Settings -->
+            <div class="profile-card" id="step4Card" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">Preferences & Settings</h2>
+                    <p class="section-subtitle">Customize your experience</p>
                 </div>
 
-                <form id="aboutForm">
-                    <!-- Bio -->
-                    <div class="form-section">
-                        <h3 class="section-title">
-                            <i class="fas fa-edit"></i>
-                            Bio *
-                        </h3>
+                <div class="completion-badge" id="completionBadge4" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Section completed</span>
+                </div>
 
-                        <div class="form-group">
-                            <textarea id="bio" placeholder="Tell others about yourself... What makes you unique? What are you looking for?" maxlength="500" required></textarea>
-                            <div style="text-align: right; font-size: 0.8rem; color: var(--text-light); margin-top: 8px;" id="bioCount">0/500</div>
-                        </div>
-                    </div>
-
-                    <!-- Basic Preferences -->
+                <form id="preferencesForm">
+                    <!-- Match Preferences -->
                     <div class="form-section">
-                        <h3 class="section-title">
+                        <div class="form-section-header">
                             <i class="fas fa-heart"></i>
-                            Basic Preferences
-                        </h3>
+                            <h3>Match Preferences</h3>
+                            <p>Required</p>
+                        </div>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="height">Height (cm)</label>
-                                <div class="input-wrapper">
-                                    <i class="fas fa-ruler"></i>
-                                    <input type="number" id="height" placeholder="e.g. 170">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exercise">Exercise</label>
-                                <div class="input-wrapper">
-                                    <i class="fas fa-dumbbell"></i>
-                                    <select id="exercise">
-                                        <option value="">Select</option>
-                                        <option value="daily">Daily</option>
-                                        <option value="often">Often</option>
-                                        <option value="sometimes">Sometimes</option>
-                                        <option value="rarely">Rarely</option>
-                                    </select>
-                                </div>
+                        <div class="form-group">
+                            <label for="interestedIn">I'm interested in *</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-venus-mars"></i>
+                                <select id="interestedIn" required>
+                                    <option value="">Select</option>
+                                    <option value="women">Women</option>
+                                    <option value="men">Men</option>
+                                    <option value="everyone">Everyone</option>
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="drinking">Drinking</label>
+                                <label for="ageMin">Minimum Age *</label>
                                 <div class="input-wrapper">
-                                    <i class="fas fa-wine-glass"></i>
-                                    <select id="drinking">
-                                        <option value="">Select</option>
-                                        <option value="never">Never</option>
-                                        <option value="socially">Socially</option>
-                                        <option value="often">Often</option>
-                                    </select>
+                                    <i class="fas fa-calendar-minus"></i>
+                                    <input type="number" id="ageMin" min="18" max="100" value="18" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="smoking">Smoking</label>
+                                <label for="ageMax">Maximum Age *</label>
                                 <div class="input-wrapper">
-                                    <i class="fas fa-smoking"></i>
-                                    <select id="smoking">
-                                        <option value="">Select</option>
-                                        <option value="never">Never</option>
-                                        <option value="socially">Socially</option>
-                                        <option value="regularly">Regularly</option>
-                                    </select>
+                                    <i class="fas fa-calendar-plus"></i>
+                                    <input type="number" id="ageMax" min="18" max="100" value="35" required>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="kids">Children</label>
+                            <label for="maxDistance">Maximum Distance *</label>
                             <div class="input-wrapper">
-                                <i class="fas fa-child"></i>
-                                <select id="kids">
-                                    <option value="">Select</option>
-                                    <option value="dont-want">Don't want</option>
-                                    <option value="want">Want someday</option>
-                                    <option value="have">Have children</option>
-                                    <option value="open">Open to children</option>
+                                <i class="fas fa-route"></i>
+                                <select id="maxDistance" required>
+                                    <option value="5">5 km</option>
+                                    <option value="10">10 km</option>
+                                    <option value="25">25 km</option>
+                                    <option value="50">50 km</option>
+                                    <option value="100">100 km</option>
+                                    <option value="any">Anywhere</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Languages -->
+                    <!-- Notification Settings -->
                     <div class="form-section">
-                        <h3 class="section-title">
-                            <i class="fas fa-language"></i>
-                            Languages
-                        </h3>
+                        <div class="form-section-header">
+                            <i class="fas fa-bell"></i>
+                            <h3>Notification Settings</h3>
+                            <p>Optional</p>
+                        </div>
 
-                        <div class="form-group">
-                            <div class="input-wrapper">
-                                <i class="fas fa-language"></i>
-                                <input type="text" id="languages" placeholder="e.g. English, Spanish, French">
+                        <div class="settings-item">
+                            <div class="settings-info">
+                                <h4>Push Notifications</h4>
+                                <p>Receive notifications about matches and messages</p>
+                            </div>
+                            <div class="toggle-switch" id="pushNotifications"></div>
+                        </div>
+
+                        <div class="settings-item">
+                            <div class="settings-info">
+                                <h4>Email Updates</h4>
+                                <p>Receive weekly updates and promotions</p>
+                            </div>
+                            <div class="toggle-switch" id="emailUpdates"></div>
+                        </div>
+
+                        <div class="settings-item">
+                            <div class="settings-info">
+                                <h4>New Match Alerts</h4>
+                                <p>Get notified when you have a new match</p>
+                            </div>
+                            <div class="toggle-switch active" id="matchAlerts"></div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy Settings -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Privacy Settings</h3>
+                            <p>Control your visibility</p>
+                        </div>
+
+                        <div class="settings-item">
+                            <div class="settings-info">
+                                <h4>Profile Visibility</h4>
+                                <p>Who can see your profile</p>
+                            </div>
+                            <div class="input-wrapper" style="width: 150px;">
+                                <select id="profileVisibility">
+                                    <option value="public">Public</option>
+                                    <option value="private">Private</option>
+                                    <option value="matches">Only Matches</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
-                </form>
 
-                <div class="action-buttons">
-                    <button class="btn btn-outline" id="backToBasic">Back</button>
-                    <button class="btn btn-primary" id="nextToInterests">Next Step</button>
-                </div>
-            </div>
-
-            <!-- Step 4: Interests -->
-            <div class="profile-card" id="step4Card" style="display: none;">
-                <div class="photo-section">
-                    <h2 class="photo-title">Your Interests</h2>
-                    <p class="photo-subtitle">Select at least 5 interests</p>
-                </div>
-
-                <div id="interestsAlert" class="alert alert-info" style="display: none;"></div>
-
-                <form id="interestsForm">
-                    <!-- Entertainment -->
-                    <div class="form-section">
-                        <h3 class="section-title">
-                            <i class="fas fa-music"></i>
-                            Entertainment
-                        </h3>
-                        <div class="interests-grid" id="entertainmentGrid">
-                            <span class="interest-tag">Music</span>
-                            <span class="interest-tag">Movies</span>
-                            <span class="interest-tag">TV Shows</span>
-                            <span class="interest-tag">Gaming</span>
-                            <span class="interest-tag">Reading</span>
-                            <span class="interest-tag">Theater</span>
-                            <span class="interest-tag">Art</span>
-                            <span class="interest-tag">Photography</span>
+                        <div class="settings-item">
+                            <div class="settings-info">
+                                <h4>Last Online Status</h4>
+                                <p>Show when you were last active</p>
+                            </div>
+                            <div class="toggle-switch active" id="lastOnline"></div>
                         </div>
-                    </div>
 
-                    <!-- Food & Drink -->
-                    <div class="form-section">
-                        <h3 class="section-title">
-                            <i class="fas fa-utensils"></i>
-                            Food & Drink
-                        </h3>
-                        <div class="interests-grid" id="foodGrid">
-                            <span class="interest-tag">Coffee</span>
-                            <span class="interest-tag">Wine</span>
-                            <span class="interest-tag">Beer</span>
-                            <span class="interest-tag">Cooking</span>
-                            <span class="interest-tag">Healthy</span>
-                            <span class="interest-tag">Pizza</span>
-                            <span class="interest-tag">Sushi</span>
-                            <span class="interest-tag">Pasta</span>
-                        </div>
-                    </div>
-
-                    <!-- Sports & Fitness -->
-                    <div class="form-section">
-                        <h3 class="section-title">
-                            <i class="fas fa-futbol"></i>
-                            Sports & Fitness
-                        </h3>
-                        <div class="interests-grid" id="sportsGrid">
-                            <span class="interest-tag">Football</span>
-                            <span class="interest-tag">Basketball</span>
-                            <span class="interest-tag">Tennis</span>
-                            <span class="interest-tag">Running</span>
-                            <span class="interest-tag">Yoga</span>
-                            <span class="interest-tag">Gym</span>
-                            <span class="interest-tag">Cycling</span>
-                            <span class="interest-tag">Swimming</span>
-                        </div>
-                    </div>
-
-                    <!-- Travel -->
-                    <div class="form-section">
-                        <h3 class="section-title">
-                            <i class="fas fa-plane"></i>
-                            Travel
-                        </h3>
-                        <div class="interests-grid" id="travelGrid">
-                            <span class="interest-tag">Travel</span>
-                            <span class="interest-tag">Beach</span>
-                            <span class="interest-tag">Mountains</span>
-                            <span class="interest-tag">City</span>
-                            <span class="interest-tag">Camping</span>
-                            <span class="interest-tag">Backpacking</span>
+                        <div class="settings-item">
+                            <div class="settings-info">
+                                <h4>Search Appearance</h4>
+                                <p>Appear in search results</p>
+                            </div>
+                            <div class="toggle-switch active" id="searchAppearance"></div>
                         </div>
                     </div>
                 </form>
 
                 <div class="action-buttons">
                     <button class="btn btn-outline" id="backToAbout">Back</button>
+                    <button class="btn btn-primary" id="nextToMedia">Next: Media</button>
+                </div>
+            </div>
+
+            <!-- Step 5: Media & Showcase -->
+            <div class="profile-card" id="step5Card" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">Media Showcase</h2>
+                    <p class="section-subtitle">Show more of your personality</p>
+                </div>
+
+                <div class="completion-badge" id="completionBadge5" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Section completed</span>
+                </div>
+
+                <form id="mediaForm">
+                    <!-- Photo Gallery -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <i class="fas fa-images"></i>
+                            <h3>Photo Gallery</h3>
+                            <p>Add up to 6 photos</p>
+                        </div>
+
+                        <div class="photo-grid" style="grid-template-columns: repeat(3, 1fr);">
+                            <div class="photo-upload-box" id="galleryPhoto1">
+                                <i class="fas fa-plus"></i>
+                                <span>Add Photo</span>
+                                <input type="file" accept="image/*" id="galleryInput1" style="display: none;">
+                            </div>
+                            <div class="photo-upload-box" id="galleryPhoto2">
+                                <i class="fas fa-plus"></i>
+                                <span>Add Photo</span>
+                                <input type="file" accept="image/*" id="galleryInput2" style="display: none;">
+                            </div>
+                            <div class="photo-upload-box" id="galleryPhoto3">
+                                <i class="fas fa-plus"></i>
+                                <span>Add Photo</span>
+                                <input type="file" accept="image/*" id="galleryInput3" style="display: none;">
+                            </div>
+                            <div class="photo-upload-box" id="galleryPhoto4">
+                                <i class="fas fa-plus"></i>
+                                <span>Add Photo</span>
+                                <input type="file" accept="image/*" id="galleryInput4" style="display: none;">
+                            </div>
+                            <div class="photo-upload-box" id="galleryPhoto5">
+                                <i class="fas fa-plus"></i>
+                                <span>Add Photo</span>
+                                <input type="file" accept="image/*" id="galleryInput5" style="display: none;">
+                            </div>
+                            <div class="photo-upload-box" id="galleryPhoto6">
+                                <i class="fas fa-plus"></i>
+                                <span>Add Photo</span>
+                                <input type="file" accept="image/*" id="galleryInput6" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Introduction -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <i class="fas fa-video"></i>
+                            <h3>Video Introduction</h3>
+                            <p>Optional - Stand out with a video</p>
+                        </div>
+
+                        <div class="photo-upload-box" style="aspect-ratio: 16/9; max-width: 400px; margin: 0 auto;" id="videoUploadBox">
+                            <i class="fas fa-video"></i>
+                            <span>Upload Video</span>
+                            <input type="file" accept="video/*" id="videoInput" style="display: none;">
+                        </div>
+                        <p class="photo-hint" style="margin-top: var(--spacing-sm);">
+                            <i class="fas fa-info-circle"></i>
+                            Max 30 seconds, MP4 format
+                        </p>
+                    </div>
+
+                    <!-- Portfolio -->
+                    <div class="form-section">
+                        <div class="form-section-header">
+                            <i class="fas fa-briefcase"></i>
+                            <h3>Portfolio / Work Samples</h3>
+                            <p>Optional - Showcase your work</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="portfolio">Portfolio Link</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-link"></i>
+                                <input type="url" id="portfolio" placeholder="https://yourportfolio.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="workSamples">Work Samples Description</label>
+                            <div class="input-wrapper">
+                                <textarea id="workSamples" placeholder="Briefly describe your work" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="action-buttons">
+                    <button class="btn btn-outline" id="backToPreferences">Back</button>
+                    <button class="btn btn-primary" id="nextToVerification">Next: Verification</button>
+                </div>
+            </div>
+
+            <!-- Step 6: Verification & Badges -->
+            <div class="profile-card" id="step6Card" style="display: none;">
+                <div class="section-header">
+                    <h2 class="section-title">Verification & Badges</h2>
+                    <p class="section-subtitle">Build trust with the community</p>
+                </div>
+
+                <div class="completion-badge" id="completionBadge6" style="display: none;">
+                    <i class="fas fa-check-circle"></i>
+                    <span>All set! Your profile is complete</span>
+                </div>
+
+                <!-- Email Verification -->
+                <div class="form-section">
+                    <div class="form-section-header">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email Verification</h3>
+                        <p>Required</p>
+                    </div>
+
+                    <div class="verification-item">
+                        <div class="verification-info">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email Address</h4>
+                                <p id="userEmail">user@example.com</p>
+                            </div>
+                        </div>
+                        <div class="verification-status not-started" id="emailStatus">
+                            Not Verified
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline" id="verifyEmailBtn" style="margin-top: var(--spacing-md);">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Verification Email
+                    </button>
+                </div>
+
+                <!-- Phone Verification -->
+                <div class="form-section">
+                    <div class="form-section-header">
+                        <i class="fas fa-phone"></i>
+                        <h3>Phone Verification</h3>
+                        <p>Optional - Recommended for 2FA</p>
+                    </div>
+
+                    <div class="verification-item">
+                        <div class="verification-info">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone Number</h4>
+                                <p id="userPhone">Not added</p>
+                            </div>
+                        </div>
+                        <div class="verification-status not-started" id="phoneStatus">
+                            Not Verified
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline" id="verifyPhoneBtn" style="margin-top: var(--spacing-md);">
+                        <i class="fas fa-mobile-alt"></i>
+                        Verify Phone
+                    </button>
+                </div>
+
+                <!-- Identity Verification -->
+                <div class="form-section">
+                    <div class="form-section-header">
+                        <i class="fas fa-id-card"></i>
+                        <h3>Identity Verification</h3>
+                        <p>Optional - Get the verified badge</p>
+                    </div>
+
+                    <div class="badges-grid">
+                        <div class="badge">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Email Verified</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-hourglass-half"></i>
+                            <span>Phone Verification</span>
+                        </div>
+                        <div class="badge">
+                            <i class="fas fa-hourglass-half"></i>
+                            <span>Identity Verification</span>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="verifyIdentityBtn" style="margin-top: var(--spacing-md);">
+                        <i class="fas fa-camera"></i>
+                        Start Identity Verification
+                    </button>
+                </div>
+
+                <!-- Profile Completion -->
+                <div class="form-section">
+                    <div class="form-section-header">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Profile Completion</h3>
+                        <p>Track your progress</p>
+                    </div>
+
+                    <div style="margin-bottom: var(--spacing-md);">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-sm);">
+                            <span style="font-weight: 600;">Profile Strength</span>
+                            <span id="profileStrength">0%</span>
+                        </div>
+                        <div class="progress-bar" style="height: 10px;">
+                            <div class="progress-fill" id="profileStrengthBar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="badges-grid" id="completionBadges">
+                        <!-- Will be populated by JS -->
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-outline" id="backToMedia">Back</button>
                     <button class="btn btn-primary" id="completeProfile" disabled>Complete Profile</button>
+                </div>
+
+                <div class="terms" style="margin-top: var(--spacing-xl);">
+                    <i class="fas fa-shield-alt"></i>
+                    Your information is secure and will never be shared without your permission
                 </div>
             </div>
         </main>

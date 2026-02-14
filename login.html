@@ -68,8 +68,12 @@
                         </div>
                     </div>
 
-                    <div style="text-align: right; margin-bottom: 24px;">
-                        <a href="#" id="forgotPassword" style="color: var(--primary); font-size: 0.85rem; text-decoration: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg);">
+                        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                            <input type="checkbox" id="rememberMe" style="width: 18px; height: 18px; accent-color: var(--primary);">
+                            <label for="rememberMe" style="font-size: var(--text-sm); color: var(--text-secondary); cursor: pointer;">Remember me</label>
+                        </div>
+                        <a href="#" id="forgotPassword" style="color: var(--primary); font-size: var(--text-sm); text-decoration: none; font-weight: 500;">
                             Forgot Password?
                         </a>
                     </div>

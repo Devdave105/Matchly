@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Matchly - Complete Your Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="profile-page">
+        <header class="profile-header">
+            <div class="header-content">
+                <a href="index.html" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <div class="logo">Matchly</div>
+                <div style="width: 40px;"></div>
+            </div>
+        </header>
+
+        <main class="profile-container">
+            <!-- Progress Bar -->
+            <div class="profile-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 25%;"></div>
+                </div>
+                <div class="progress-steps">
+                    <span class="step active" id="step1">Photos</span>
+                    <span class="step" id="step2">Basic Info</span>
+                    <span class="step" id="step3">About You</span>
+                    <span class="step" id="step4">Interests</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Photos -->
+            <div class="profile-card" id="step1Card">
+                <div class="photo-section">
+                    <h2 class="photo-title">Add Your Photos</h2>
+                    <p class="photo-subtitle">Upload at least 2 photos to get started</p>
+
+                    <div class="photo-grid">
+                        <div class="photo-upload-box" id="photoBox1">
+                            <i class="fas fa-camera"></i>
+                            <span>Add Photo</span>
+                            <input type="file" accept="image/*" id="photoInput1" style="display: none;">
+                        </div>
+                        <div class="photo-upload-box" id="photoBox2">
+                            <i class="fas fa-camera"></i>
+                            <span>Add Photo</span>
+                            <input type="file" accept="image/*" id="photoInput2" style="display: none;">
+                        </div>
+                        <div class="photo-upload-box" id="photoBox3">
+                            <i class="fas fa-camera"></i>
+                            <span>Add Photo</span>
+                            <input type="file" accept="image/*" id="photoInput3" style="display: none;">
+                        </div>
+                    </div>
+
+                    <div class="photo-hint">
+                        <i class="fas fa-info-circle"></i>
+                        First photo will be your profile picture
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-outline" id="skipPhotos">Skip for now</button>
+                    <button class="btn btn-primary" id="nextToBasic" disabled>Next Step</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Basic Info -->
+            <div class="profile-card" id="step2Card" style="display: none;">
+                <div class="photo-section">
+                    <h2 class="photo-title">Basic Information</h2>
+                    <p class="photo-subtitle">Tell us about yourself</p>
+                </div>
+
+                <form id="basicInfoForm">
+                    <!-- Personal Details -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-user-circle"></i>
+                            Personal Details
+                        </h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="firstName" placeholder="Enter first name" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="lastName" placeholder="Enter last name" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="age-gender-row">
+                            <div class="form-group">
+                                <label for="age">Age *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-calendar"></i>
+                                    <input type="number" id="age" placeholder="Age" min="18" max="100" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gender">Gender *</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-venus-mars"></i>
+                                    <select id="gender" required>
+                                        <option value="">Select gender</option>
+                                        <option value="woman">Woman</option>
+                                        <option value="man">Man</option>
+                                        <option value="non-binary">Non-binary</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Location
+                        </h3>
+
+                        <div class="form-group">
+                            <label for="country">Country *</label>
+                            <select id="country" class="country-select" required>
+                                <option value="">Select your country</option>
+                                <option value="USA">United States</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="Canada">Canada</option>
+                                <option value="Australia">Australia</option>
+                                <option value="Germany">Germany</option>
+                                <option value="France">France</option>
+                                <option value="Spain">Spain</option>
+                                <option value="Italy">Italy</option>
+                                <option value="Japan">Japan</option>
+                                <option value="Brazil">Brazil</option>
+                                <option value="India">India</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group location-search">
+                            <label for="city">City *</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-city"></i>
+                                <input type="text" id="city" placeholder="Enter your city" required>
+                                <button type="button" id="detectLocation" style="position: absolute; right: 10px; background: none; border: none; color: var(--primary); cursor: pointer;">
+                                    <i class="fas fa-crosshairs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Work & Education -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-briefcase"></i>
+                            Work & Education (Optional)
+                        </h3>
+
+                        <div class="form-group">
+                            <label for="jobTitle">Job Title</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-briefcase"></i>
+                                <input type="text" id="jobTitle" placeholder="e.g. Product Designer">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-building"></i>
+                                <input type="text" id="company" placeholder="e.g. Google">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="education">Education</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-graduation-cap"></i>
+                                <input type="text" id="education" placeholder="e.g. Stanford University">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="action-buttons">
+                    <button class="btn btn-outline" id="backToPhotos">Back</button>
+                    <button class="btn btn-primary" id="nextToAbout">Next Step</button>
+                </div>
+            </div>
+
+            <!-- Step 3: About You -->
+            <div class="profile-card" id="step3Card" style="display: none;">
+                <div class="photo-section">
+                    <h2 class="photo-title">About You</h2>
+                    <p class="photo-subtitle">Help others get to know you</p>
+                </div>
+
+                <form id="aboutForm">
+                    <!-- Bio -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-edit"></i>
+                            Bio *
+                        </h3>
+
+                        <div class="form-group">
+                            <textarea id="bio" placeholder="Tell others about yourself... What makes you unique? What are you looking for?" maxlength="500" required></textarea>
+                            <div style="text-align: right; font-size: 0.8rem; color: var(--text-light); margin-top: 8px;" id="bioCount">0/500</div>
+                        </div>
+                    </div>
+
+                    <!-- Basic Preferences -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-heart"></i>
+                            Basic Preferences
+                        </h3>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="height">Height (cm)</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-ruler"></i>
+                                    <input type="number" id="height" placeholder="e.g. 170">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exercise">Exercise</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-dumbbell"></i>
+                                    <select id="exercise">
+                                        <option value="">Select</option>
+                                        <option value="daily">Daily</option>
+                                        <option value="often">Often</option>
+                                        <option value="sometimes">Sometimes</option>
+                                        <option value="rarely">Rarely</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="drinking">Drinking</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-wine-glass"></i>
+                                    <select id="drinking">
+                                        <option value="">Select</option>
+                                        <option value="never">Never</option>
+                                        <option value="socially">Socially</option>
+                                        <option value="often">Often</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="smoking">Smoking</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-smoking"></i>
+                                    <select id="smoking">
+                                        <option value="">Select</option>
+                                        <option value="never">Never</option>
+                                        <option value="socially">Socially</option>
+                                        <option value="regularly">Regularly</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="kids">Children</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-child"></i>
+                                <select id="kids">
+                                    <option value="">Select</option>
+                                    <option value="dont-want">Don't want</option>
+                                    <option value="want">Want someday</option>
+                                    <option value="have">Have children</option>
+                                    <option value="open">Open to children</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Languages -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-language"></i>
+                            Languages
+                        </h3>
+
+                        <div class="form-group">
+                            <div class="input-wrapper">
+                                <i class="fas fa-language"></i>
+                                <input type="text" id="languages" placeholder="e.g. English, Spanish, French">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="action-buttons">
+                    <button class="btn btn-outline" id="backToBasic">Back</button>
+                    <button class="btn btn-primary" id="nextToInterests">Next Step</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Interests -->
+            <div class="profile-card" id="step4Card" style="display: none;">
+                <div class="photo-section">
+                    <h2 class="photo-title">Your Interests</h2>
+                    <p class="photo-subtitle">Select at least 5 interests</p>
+                </div>
+
+                <div id="interestsAlert" class="alert alert-info" style="display: none;"></div>
+
+                <form id="interestsForm">
+                    <!-- Entertainment -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-music"></i>
+                            Entertainment
+                        </h3>
+                        <div class="interests-grid" id="entertainmentGrid">
+                            <span class="interest-tag">Music</span>
+                            <span class="interest-tag">Movies</span>
+                            <span class="interest-tag">TV Shows</span>
+                            <span class="interest-tag">Gaming</span>
+                            <span class="interest-tag">Reading</span>
+                            <span class="interest-tag">Theater</span>
+                            <span class="interest-tag">Art</span>
+                            <span class="interest-tag">Photography</span>
+                        </div>
+                    </div>
+
+                    <!-- Food & Drink -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-utensils"></i>
+                            Food & Drink
+                        </h3>
+                        <div class="interests-grid" id="foodGrid">
+                            <span class="interest-tag">Coffee</span>
+                            <span class="interest-tag">Wine</span>
+                            <span class="interest-tag">Beer</span>
+                            <span class="interest-tag">Cooking</span>
+                            <span class="interest-tag">Healthy</span>
+                            <span class="interest-tag">Pizza</span>
+                            <span class="interest-tag">Sushi</span>
+                            <span class="interest-tag">Pasta</span>
+                        </div>
+                    </div>
+
+                    <!-- Sports & Fitness -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-futbol"></i>
+                            Sports & Fitness
+                        </h3>
+                        <div class="interests-grid" id="sportsGrid">
+                            <span class="interest-tag">Football</span>
+                            <span class="interest-tag">Basketball</span>
+                            <span class="interest-tag">Tennis</span>
+                            <span class="interest-tag">Running</span>
+                            <span class="interest-tag">Yoga</span>
+                            <span class="interest-tag">Gym</span>
+                            <span class="interest-tag">Cycling</span>
+                            <span class="interest-tag">Swimming</span>
+                        </div>
+                    </div>
+
+                    <!-- Travel -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-plane"></i>
+                            Travel
+                        </h3>
+                        <div class="interests-grid" id="travelGrid">
+                            <span class="interest-tag">Travel</span>
+                            <span class="interest-tag">Beach</span>
+                            <span class="interest-tag">Mountains</span>
+                            <span class="interest-tag">City</span>
+                            <span class="interest-tag">Camping</span>
+                            <span class="interest-tag">Backpacking</span>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="action-buttons">
+                    <button class="btn btn-outline" id="backToAbout">Back</button>
+                    <button class="btn btn-primary" id="completeProfile" disabled>Complete Profile</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

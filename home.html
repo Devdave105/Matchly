@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes">
+    <title>Matchly - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Home Page Specific Styles */
+        .home-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        /* Navigation Bar */
+        .home-nav {
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: var(--spacing-sm) 0;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-full);
+            transition: all var(--transition-base);
+        }
+
+        .nav-link i {
+            font-size: 1.2rem;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .nav-profile {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            cursor: pointer;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-full);
+            transition: all var(--transition-base);
+        }
+
+        .nav-profile:hover {
+            background: var(--primary-light);
+        }
+
+        .nav-profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+
+        .nav-profile span {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Main Content */
+        .home-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-xl) var(--spacing-lg);
+        }
+
+        /* Welcome Banner */
+        .welcome-banner {
+            background: var(--gradient-primary);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-title {
+            font-size: var(--text-3xl);
+            font-weight: 800;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .welcome-text {
+            font-size: var(--text-lg);
+            opacity: 0.95;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .welcome-stats {
+            display: flex;
+            gap: var(--spacing-2xl);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: var(--text-2xl);
+            font-weight: 800;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: var(--text-sm);
+            opacity: 0.9;
+        }
+
+        /* Daily Matches Section */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-header h2 {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .section-header a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            transition: all var(--transition-base);
+        }
+
+        .section-header a:hover {
+            gap: var(--spacing-sm);
+        }
+
+        /* Daily Matches Grid */
+        .daily-matches {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .match-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: all var(--transition-base);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .match-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .match-card-image {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .match-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .match-card:hover .match-card-image img {
+            transform: scale(1.1);
+        }
+
+        .match-card-badge {
+            position: absolute;
+            top: var(--spacing-md);
+            right: var(--spacing-md);
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .match-card-badge.online {
+            background: var(--success);
+        }
+
+        .match-card-badge.new {
+            background: var(--warning);
+        }
+
+        .match-card-info {
+            padding: var(--spacing-lg);
+        }
+
+        .match-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .match-card-name {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .match-card-age {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .match-card-location {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .match-card-location i {
+            color: var(--primary);
+            font-size: var(--text-xs);
+        }
+
+        .match-card-interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .match-card-interest {
+            padding: 4px 12px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            color: var(--text-secondary);
+        }
+
+        .match-card-actions {
+            display: flex;
+            justify-content: space-around;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .match-action-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: all var(--transition-base);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .match-action-btn.like {
+            background: rgba(255, 77, 109, 0.1);
+            color: var(--primary);
+        }
+
+        .match-action-btn.like:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .match-action-btn.dislike {
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--text-secondary);
+        }
+
+        .match-action-btn.dislike:hover {
+            background: var(--text-primary);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .match-action-btn.star {
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+        }
+
+        .match-action-btn.star:hover {
+            background: #ffc107;
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        /* Recent Activity */
+        .activity-section {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .activity-header h3 {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
+
+        .activity-item:hover {
+            background: var(--primary-light);
+            transform: translateX(5px);
+        }
+
+        .activity-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .activity-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .activity-avatar.online::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 10px;
+            height: 10px;
+            background: var(--success);
+            border-radius: 50%;
+            border: 2px solid var(--white);
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .activity-time {
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .activity-icon.match {
+            background: rgba(255, 77, 109, 0.1);
+            color: var(--primary);
+        }
+
+        .activity-icon.message {
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+        }
+
+        .activity-icon.like {
+            background: rgba(46, 204, 113, 0.1);
+            color: #2ecc71;
+        }
+
+        /* Suggested Matches */
+        .suggested-section {
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .suggested-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .suggested-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
+
+        .suggested-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .suggested-image {
+            height: 150px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .suggested-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .suggested-info {
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+
+        .suggested-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .suggested-details {
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .suggested-match-btn {
+            width: 100%;
+            padding: var(--spacing-sm);
+            background: var(--primary-light);
+            color: var(--primary);
+            border: none;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: var(--text-xs);
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .suggested-match-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: var(--spacing-2xl);
+            right: var(--spacing-2xl);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all var(--transition-base);
+            z-index: 99;
+        }
+
+        .fab:hover {
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-2xl);
+        }
+
+        .quick-action {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
+
+        .quick-action:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .quick-action i {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .quick-action span {
+            display: block;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: var(--text-sm);
+        }
+
+        .quick-action small {
+            color: var(--text-tertiary);
+            font-size: var(--text-xs);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: var(--spacing-sm);
+            }
+
+            .nav-link span {
+                display: none;
+            }
+
+            .nav-link i {
+                font-size: 1.4rem;
+            }
+
+            .nav-profile span {
+                display: none;
+            }
+
+            .welcome-banner {
+                padding: var(--spacing-xl);
+            }
+
+            .welcome-title {
+                font-size: var(--text-2xl);
+            }
+
+            .welcome-text {
+                font-size: var(--text-base);
+            }
+
+            .welcome-stats {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            .daily-matches {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .fab {
+                bottom: var(--spacing-lg);
+                right: var(--spacing-lg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .home-main {
+                padding: var(--spacing-md);
+            }
+
+            .section-header h2 {
+                font-size: var(--text-xl);
+            }
+
+            .activity-item {
+                flex-wrap: wrap;
+            }
+
+            .suggested-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .match-card-actions {
+                gap: var(--spacing-sm);
+            }
+
+            .match-action-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-2xl);
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--primary-light);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .empty-state h3 {
+            font-size: var(--text-xl);
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .empty-state p {
+            color: var(--text-tertiary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .empty-state .btn {
+            display: inline-block;
+            width: auto;
+            padding: var(--spacing-sm) var(--spacing-xl);
+        }
+
+        /* Loading Skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* Toast Notifications */
+        .toast-container {
+            position: fixed;
+            bottom: var(--spacing-2xl);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            pointer-events: none;
+        }
+
+        .toast {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md) var(--spacing-lg);
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            animation: slideUp 0.3s ease;
+            pointer-events: auto;
+            max-width: 400px;
+        }
+
+        .toast.success {
+            border-left: 4px solid var(--success);
+        }
+
+        .toast.error {
+            border-left: 4px solid var(--error);
+        }
+
+        .toast.info {
+            border-left: 4px solid var(--info);
+        }
+
+        .toast i {
+            font-size: 1.2rem;
+        }
+
+        .toast.success i {
+            color: var(--success);
+        }
+
+        .toast.error i {
+            color: var(--error);
+        }
+
+        .toast.info i {
+            color: var(--info);
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .toast-message {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: var(--spacing-xs);
+        }
+
+        .toast-close:hover {
+            color: var(--text-primary);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="home-page">
+        <!-- Navigation -->
+        <nav class="home-nav">
+            <div class="nav-container">
+                <div class="nav-logo">Matchly</div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-heart"></i>
+                            <span>Matches</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-comment"></i>
+                            <span>Messages</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-bell"></i>
+                            <span>Notifications</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="nav-profile" id="profileMenu">
+                    <img src="https://images.unsplash.com/photo-1494790108777-466d829a6c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Profile">
+                    <span>Sarah</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="home-main">
+            <!-- Welcome Banner -->
+            <div class="welcome-banner">
+                <div class="welcome-content">
+                    <h1 class="welcome-title">Welcome back, Sarah! 👋</h1>
+                    <p class="welcome-text">You have 3 new matches waiting for you</p>
+                    
+                    <div class="welcome-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">24</span>
+                            <span class="stat-label">Total Matches</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Messages</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">8</span>
+                            <span class="stat-label">Profile Views</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">New Likes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <div class="quick-action" onclick="window.location.href='#'">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Add Photos</span>
+                    <small>Boost your profile</small>
+                </div>
+                <div class="quick-action" onclick="window.location.href='#'">
+                    <i class="fas fa-crown"></i>
+                    <span>Premium</span>
+                    <small>Get unlimited likes</small>
+                </div>
+                <div class="quick-action" onclick="window.location.href='#'">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Events</span>
+                    <small>Near you</small>
+                </div>
+                <div class="quick-action" onclick="window.location.href='#'">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Safety</span>
+                    <small>Verify now</small>
+                </div>
+            </div>
+
+            <!-- Daily Matches Section -->
+            <div class="section-header">
+                <h2>Daily Matches 🔥</h2>
+                <a href="#">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="daily-matches" id="dailyMatches">
+                <!-- Match Card 1 -->
+                <div class="match-card" onclick="window.location.href='profile-view.html?id=1'">
+                    <div class="match-card-image">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="James">
+                        <div class="match-card-badge online">Online</div>
+                    </div>
+                    <div class="match-card-info">
+                        <div class="match-card-header">
+                            <span class="match-card-name">James</span>
+                            <span class="match-card-age">28</span>
+                        </div>
+                        <div class="match-card-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>2.5 km away</span>
+                        </div>
+                        <div class="match-card-interests">
+                            <span class="match-card-interest">Travel</span>
+                            <span class="match-card-interest">Music</span>
+                            <span class="match-card-interest">Fitness</span>
+                        </div>
+                        <div class="match-card-actions">
+                            <button class="match-action-btn dislike" onclick="event.stopPropagation(); handleAction('dislike', 1)">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <button class="match-action-btn star" onclick="event.stopPropagation(); handleAction('superlike', 1)">
+                                <i class="fas fa-star"></i>
+                            </button>
+                            <button class="match-action-btn like" onclick="event.stopPropagation(); handleAction('like', 1)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match Card 2 -->
+                <div class="match-card" onclick="window.location.href='profile-view.html?id=2'">
+                    <div class="match-card-image">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Emma">
+                        <div class="match-card-badge new">New</div>
+                    </div>
+                    <div class="match-card-info">
+                        <div class="match-card-header">
+                            <span class="match-card-name">Emma</span>
+                            <span class="match-card-age">26</span>
+                        </div>
+                        <div class="match-card-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>1.2 km away</span>
+                        </div>
+                        <div class="match-card-interests">
+                            <span class="match-card-interest">Art</span>
+                            <span class="match-card-interest">Yoga</span>
+                            <span class="match-card-interest">Coffee</span>
+                        </div>
+                        <div class="match-card-actions">
+                            <button class="match-action-btn dislike" onclick="event.stopPropagation(); handleAction('dislike', 2)">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <button class="match-action-btn star" onclick="event.stopPropagation(); handleAction('superlike', 2)">
+                                <i class="fas fa-star"></i>
+                            </button>
+                            <button class="match-action-btn like" onclick="event.stopPropagation(); handleAction('like', 2)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match Card 3 -->
+                <div class="match-card" onclick="window.location.href='profile-view.html?id=3'">
+                    <div class="match-card-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Michael">
+                        <div class="match-card-badge">Match</div>
+                    </div>
+                    <div class="match-card-info">
+                        <div class="match-card-header">
+                            <span class="match-card-name">Michael</span>
+                            <span class="match-card-age">30</span>
+                        </div>
+                        <div class="match-card-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>3.8 km away</span>
+                        </div>
+                        <div class="match-card-interests">
+                            <span class="match-card-interest">Tech</span>
+                            <span class="match-card-interest">Gaming</span>
+                            <span class="match-card-interest">Cooking</span>
+                        </div>
+                        <div class="match-card-actions">
+                            <button class="match-action-btn dislike" onclick="event.stopPropagation(); handleAction('dislike', 3)">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <button class="match-action-btn star" onclick="event.stopPropagation(); handleAction('superlike', 3)">
+                                <i class="fas fa-star"></i>
+                            </button>
+                            <button class="match-action-btn like" onclick="event.stopPropagation(); handleAction('like', 3)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Match Card 4 -->
+                <div class="match-card" onclick="window.location.href='profile-view.html?id=4'">
+                    <div class="match-card-image">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sophia">
+                        <div class="match-card-badge online">Online</div>
+                    </div>
+                    <div class="match-card-info">
+                        <div class="match-card-header">
+                            <span class="match-card-name">Sophia</span>
+                            <span class="match-card-age">27</span>
+                        </div>
+                        <div class="match-card-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>0.5 km away</span>
+                        </div>
+                        <div class="match-card-interests">
+                            <span class="match-card-interest">Photography</span>
+                            <span class="match-card-interest">Travel</span>
+                            <span class="match-card-interest">Wine</span>
+                        </div>
+                        <div class="match-card-actions">
+                            <button class="match-action-btn dislike" onclick="event.stopPropagation(); handleAction('dislike', 4)">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            <button class="match-action-btn star" onclick="event.stopPropagation(); handleAction('superlike', 4)">
+                                <i class="fas fa-star"></i>
+                            </button>
+                            <button class="match-action-btn like" onclick="event.stopPropagation(); handleAction('like', 4)">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity Section -->
+            <div class="activity-section">
+                <div class="activity-header">
+                    <h3>Recent Activity</h3>
+                    <a href="#">View All</a>
+                </div>
+
+                <div class="activity-list" id="activityList">
+                    <!-- Activity Item 1 -->
+                    <div class="activity-item" onclick="window.location.href='chat.html'">
+                        <div class="activity-avatar online">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="James">
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">James sent you a message</div>
+                            <div class="activity-time">2 minutes ago</div>
+                        </div>
+                        <div class="activity-icon message">
+                            <i class="fas fa-comment"></i>
+                        </div>
+                    </div>
+
+                    <!-- Activity Item 2 -->
+                    <div class="activity-item" onclick="window.location.href='matches.html'">
+                        <div class="activity-avatar">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Emma">
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">New match with Emma!</div>
+                            <div class="activity-time">1 hour ago</div>
+                        </div>
+                        <div class="activity-icon match">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+
+                    <!-- Activity Item 3 -->
+                    <div class="activity-item" onclick="window.location.href='profile-view.html'">
+                        <div class="activity-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Michael">
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">Michael liked your photo</div>
+                            <div class="activity-time">3 hours ago</div>
+                        </div>
+                        <div class="activity-icon like">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+
+                    <!-- Activity Item 4 -->
+                    <div class="activity-item" onclick="window.location.href='profile-view.html'">
+                        <div class="activity-avatar online">
+                            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Sophia">
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">Sophia viewed your profile</div>
+                            <div class="activity-time">5 hours ago</div>
+                        </div>
+                        <div class="activity-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suggested Matches -->
+            <div class="suggested-section">
+                <div class="section-header">
+                    <h2>Suggested for You ✨</h2>
+                    <a href="#">See More</a>
+                </div>
+
+                <div class="suggested-grid" id="suggestedGrid">
+                    <!-- Suggested Card 1 -->
+                    <div class="suggested-card">
+                        <div class="suggested-image">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Alex">
+                        </div>
+                        <div class="suggested-info">
+                            <div class="suggested-name">Alex, 29</div>
+                            <div class="suggested-details">3 km away</div>
+                            <button class="suggested-match-btn" onclick="handleSuggestedMatch(1)">
+                                <i class="fas fa-heart"></i> Connect
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Suggested Card 2 -->
+                    <div class="suggested-card">
+                        <div class="suggested-image">
+                            <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Olivia">
+                        </div>
+                        <div class="suggested-info">
+                            <div class="suggested-name">Olivia, 25</div>
+                            <div class="suggested-details">1.5 km away</div>
+                            <button class="suggested-match-btn" onclick="handleSuggestedMatch(2)">
+                                <i class="fas fa-heart"></i> Connect
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Suggested Card 3 -->
+                    <div class="suggested-card">
+                        <div class="suggested-image">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Daniel">
+                        </div>
+                        <div class="suggested-info">
+                            <div class="suggested-name">Daniel, 31</div>
+                            <div class="suggested-details">4 km away</div>
+                            <button class="suggested-match-btn" onclick="handleSuggestedMatch(3)">
+                                <i class="fas fa-heart"></i> Connect
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Suggested Card 4 -->
+                    <div class="suggested-card">
+                        <div class="suggested-image">
+                            <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Maya">
+                        </div>
+                        <div class="suggested-info">
+                            <div class="suggested-name">Maya, 27</div>
+                            <div class="suggested-details">2 km away</div>
+                            <button class="suggested-match-btn" onclick="handleSuggestedMatch(4)">
+                                <i class="fas fa-heart"></i> Connect
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State Example (Hidden by default) -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <i class="fas fa-heart-broken"></i>
+                <h3>No Matches Yet</h3>
+                <p>Complete your profile and add more photos to get better matches</p>
+                <button class="btn btn-primary" onclick="window.location.href='profile.html'">
+                    Complete Profile
+                </button>
+            </div>
+        </main>
+
+        <!-- Floating Action Button -->
+        <button class="fab" onclick="showQuickActions()">
+            <i class="fas fa-plus"></i>
+        </button>
+
+        <!-- Toast Notifications Container -->
+        <div class="toast-container" id="toastContainer"></div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Home Page Specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserData();
+            initializeRealTimeUpdates();
+            setupEventListeners();
+        });
+
+        // Load user data
+        function loadUserData() {
+            const user = JSON.parse(localStorage.getItem('user') || sessionStorage.getItem('user'));
+            if (user) {
+                document.querySelector('.nav-profile span').textContent = user.name.split(' ')[0];
+                document.querySelector('.welcome-title').textContent = `Welcome back, ${user.name.split(' ')[0]}! 👋`;
+            }
+        }
+
+        // Handle match actions (like, dislike, superlike)
+        function handleAction(action, userId) {
+            const actions = {
+                like: { icon: '❤️', message: 'You liked this profile!' },
+                dislike: { icon: '✖️', message: 'Profile passed' },
+                superlike: { icon: '⭐', message: 'You sent a super like! ✨' }
+            };
+
+            const actionData = actions[action];
+            
+            // Show loading state on button
+            const button = event.target.closest('button');
+            const originalHTML = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            button.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                button.innerHTML = originalHTML;
+                button.disabled = false;
+                
+                // Show toast notification
+                showToast(actionData.message, 'success');
+                
+                // Update UI
+                if (action === 'like') {
+                    checkForMatch(userId);
+                }
+            }, 800);
+        }
+
+        // Check if it's a match
+        function checkForMatch(userId) {
+            // Simulate 30% chance of match
+            if (Math.random() < 0.3) {
+                setTimeout(() => {
+                    showToast('🎉 It\'s a match! You can now chat', 'success');
+                    
+                    // Add to activity list
+                    addActivity('New match!', 'You have a new connection', 'match');
+                }, 1000);
+            }
+        }
+
+        // Handle suggested match
+        function handleSuggestedMatch(suggestionId) {
+            const button = event.target.closest('button');
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            button.disabled = true;
+
+            setTimeout(() => {
+                button.innerHTML = '<i class="fas fa-heart"></i> Sent!';
+                button.style.background = 'var(--success)';
+                button.style.color = 'white';
+                
+                showToast('Connection request sent!', 'success');
+            }, 1000);
+        }
+
+        // Add activity item
+        function addActivity(title, description, type) {
+            const activityList = document.getElementById('activityList');
+            const newActivity = document.createElement('div');
+            newActivity.className = 'activity-item';
+            newActivity.onclick = () => window.location.href = 'chat.html';
+            
+            const iconClass = type === 'match' ? 'match' : type === 'message' ? 'message' : 'like';
+            
+            newActivity.innerHTML = `
+                <div class="activity-avatar online">
+                    <img src="https://images.unsplash.com/photo-1494790108777-466d829a6c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Match">
+                </div>
+                <div class="activity-content">
+                    <div class="activity-title">${title}</div>
+                    <div class="activity-time">Just now</div>
+                </div>
+                <div class="activity-icon ${iconClass}">
+                    <i class="fas fa-heart"></i>
+                </div>
+            `;
+            
+            activityList.insertBefore(newActivity, activityList.firstChild);
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            const icons = {
+                success: 'fa-check-circle',
+                error: 'fa-exclamation-circle',
+                info: 'fa-info-circle'
+            };
+            
+            toast.innerHTML = `
+                <i class="fas ${icons[type]}"></i>
+                <div class="toast-content">
+                    <div class="toast-title">${type.charAt(0).toUpperCase() + type.slice(1)}</div>
+                    <div class="toast-message">${message}</div>
+                </div>
+                <button class="toast-close" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 5000);
+        }
+
+        // Show quick actions menu
+        function showQuickActions() {
+            const actions = [
+                { icon: 'fa-camera', text: 'Add Photo' },
+                { icon: 'fa-search', text: 'Discover' },
+                { icon: 'fa-calendar', text: 'Plan Date' },
+                { icon: 'fa-gift', text: 'Send Gift' }
+            ];
+            
+            // Create quick action menu (simplified)
+            showToast('Quick actions menu opened', 'info');
+        }
+
+        // Initialize real-time updates
+        function initializeRealTimeUpdates() {
+            // Simulate real-time notifications
+            setInterval(() => {
+                if (Math.random() < 0.3) {
+                    showToast('🔔 New activity on your profile', 'info');
+                }
+            }, 30000); // Every 30 seconds
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Profile menu click
+            document.querySelector('.nav-profile').addEventListener('click', function() {
+                window.location.href = 'profile-view.html';
+            });
+
+            // Scroll effects
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('.home-nav');
+                if (window.scrollY > 100) {
+                    nav.style.background = 'rgba(255,255,255,0.98)';
+                    nav.style.backdropFilter = 'blur(10px)';
+                } else {
+                    nav.style.background = 'rgba(255,255,255,0.95)';
+                }
+            });
+
+            // Network status
+            window.addEventListener('online', function() {
+                showToast('You are back online!', 'success');
+            });
+
+            window.addEventListener('offline', function() {
+                showToast('You are offline. Check your connection.', 'error');
+            });
+        }
+
+        // Like animation
+        function animateLike(button) {
+            button.classList.add('pulse');
+            setTimeout(() => button.classList.remove('pulse'), 300);
+        }
+    </script>
+</body>
+</html>
